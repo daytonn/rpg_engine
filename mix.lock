@@ -1,2 +1,4 @@
-%{"ex_spec": {:hex, :ex_spec, "0.3.0"},
+%{"espec": {:hex, :espec, "0.6.3"},
+  "ex_spec": {:hex, :ex_spec, "0.3.0"},
+  "meck": {:hex, :meck, "0.8.3"},
   "quickrand": {:hex, :quickrand, "1.5.0"}}

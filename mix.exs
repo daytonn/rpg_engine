@@ -2,12 +2,15 @@ defmodule D20.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :d20,
-     version: "0.0.1",
-     elixir: "~> 1.0",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps]
+    [
+      app: :d20,
+      version: "0.0.1",
+      elixir: "~> 1.0",
+      build_embedded: Mix.env == :prod,
+      start_permanent: Mix.env == :prod,
+      preferred_cli_env: [espec: :test],
+      deps: deps
+    ]
   end
 
   # Configuration for the OTP application
@@ -28,7 +31,7 @@ defmodule D20.Mixfile do
   # Type `mix help deps` for more examples and options
   defp deps do
     [
-      { :ex_spec, "~> 0.3.0", only: :test }
+      {:espec, "~> 0.6.3", only: :test},
     ]
   end
 end
