@@ -8,13 +8,13 @@ defmodule D20.Character do
     base_strength: 0,
     base_wisdom: 0
 
-  def bonus_at_level(level) when level > 1 do
-    x = level - 1
-    div(x, 4) + 2
-  end
-
   def bonus_at_level(1) do
     2
+  end
+
+  def bonus_at_level(level) do
+    x = level - 1
+    div(x, 4) + 2
   end
 
   def proficiency_bonus(character) do
