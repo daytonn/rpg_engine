@@ -1,5 +1,7 @@
 defmodule D20.FifthEdition.Race.DarkElf do
+  alias D20.FifthEdition.Race.Elf
+
   def speed do
-    D20.FifthEdition.Race.Elf.speed
+    Elf.speed
   end
 end

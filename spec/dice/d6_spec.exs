@@ -1,7 +1,7 @@
 defmodule D20.Dice.D6.Test do
   use ESpec
 
-  describe "roll" do
+  describe "roll/0" do
     subject D20.Dice.D6.roll
 
     it "returns a number between 1 and 6" do
@@ -10,7 +10,7 @@ defmodule D20.Dice.D6.Test do
     end
   end
 
-  describe "rolls" do
+  describe "rolls/1" do
     subject D20.Dice.D6.rolls(2)
 
     it "returns an array of rolls between 1 and 6" do

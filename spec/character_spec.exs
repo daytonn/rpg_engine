@@ -4,10 +4,6 @@ defmodule CharacterSpec do
   describe "defaults" do
     subject %D20.Character{}
 
-    it "does stuff" do
-      expect(subject.level).to eq(1)
-    end
-
     it "has a level of 1" do
       expect(subject.level).to eq(1)
     end
@@ -41,7 +37,7 @@ defmodule CharacterSpec do
     end
   end
 
-  describe "bonus_at_level" do
+  describe "bonus_at_level/1" do
     it "returns 2 at level 1" do
       expect(D20.Character.bonus_at_level(1)).to eq(2)
     end
@@ -123,7 +119,7 @@ defmodule CharacterSpec do
     end
   end
 
-  describe "proficiency_bonus" do
+  describe "proficiency_bonus/1" do
     it "returns 2 at level 1" do
       character = %D20.Character{level: 1}
       expect(D20.Character.proficiency_bonus(character)).to eq(2)

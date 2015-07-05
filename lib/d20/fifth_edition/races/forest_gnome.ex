@@ -1,5 +1,7 @@
 defmodule D20.FifthEdition.Race.ForestGnome do
+  alias D20.FifthEdition.Race.Gnome
+
   def speed do
-    D20.FifthEdition.Race.Gnome.speed
+    Gnome.speed
   end
 end
