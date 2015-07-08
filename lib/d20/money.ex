@@ -53,32 +53,13 @@ defmodule D20.Money do
     copper / 1000
   end
 
-  def denominations do
-    [pp: 1000, gp: 100, ep: 50, sp: 10, cp: 1]
-  end
-
   def change(copper) do
-    change(copper, [], :pp)
-  end
-
-  def change(copper, list, :pp) do
-    change(rem(copper, 1000), list ++ [pp: div(copper, 1000)], :gp)
-  end
-
-  def change(copper, list, :gp) do
-    change(rem(copper, 100), list ++ [gp: div(copper, 100)], :ep)
-  end
-
-  def change(copper, list, :ep) do
-    change(rem(copper, 50), list ++ [ep: div(copper, 50)], :sp)
-  end
-
-  def change(copper, list, :sp) do
-    change(rem(copper, 10), list ++ [sp: div(copper, 10)], :cp)
-  end
-
-  def change(copper, list, :cp) do
-    list ++ [cp: copper]
+    denominations = [pp: 1000, gp: 100, ep: 50, sp: 10, cp: 1]
+    {change_list, _} = Enum.map_reduce(denominations, copper, fn(denomination, acc) ->
+      {k, v} = denomination
+      {{k, div(acc, v)}, rem(acc, v)}
+    end)
+    change_list
   end
 
   def to_string(change) do
