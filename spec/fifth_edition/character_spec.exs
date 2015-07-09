@@ -9,6 +9,10 @@ defmodule D20.FifthEdition.CharacterSpec do
     expect(subject.level).to eq(1)
   end
 
+  it "has proficiencies" do
+    expect(subject.proficiencies).to eq([])
+  end
+
   it "has a base_strength" do
     expect(subject.base_strength).to eq(0)
   end
@@ -60,7 +64,7 @@ defmodule D20.FifthEdition.CharacterSpec do
   end
 
   describe "strength_modifier/1" do
-    subject Character.strength_modifier(%{base_strength: 0})
+    subject Character.strength_modifier(%Character{})
 
     it "returns the ability modifier for the character's strength" do
       expect(subject).to eq(-5)
@@ -68,7 +72,7 @@ defmodule D20.FifthEdition.CharacterSpec do
   end
 
   describe "dexterity_modifier/1" do
-    subject Character.dexterity_modifier(%{base_dexterity: 0})
+    subject Character.dexterity_modifier(%Character{})
 
     it "returns the ability modifier for the character's dexterity_modifier" do
       expect(subject).to eq(-5)
@@ -76,7 +80,7 @@ defmodule D20.FifthEdition.CharacterSpec do
   end
 
   describe "constitution_modifier/1" do
-    subject Character.constitution_modifier(%{base_constitution: 0})
+    subject Character.constitution_modifier(%Character{})
 
     it "returns the ability modifier for the character's constitution_modifier" do
       expect(subject).to eq(-5)
@@ -84,7 +88,7 @@ defmodule D20.FifthEdition.CharacterSpec do
   end
 
   describe "intelligence_modifier/1" do
-    subject Character.intelligence_modifier(%{base_intelligence: 0})
+    subject Character.intelligence_modifier(%Character{})
 
     it "returns the ability modifier for the character's intelligence_modifier" do
       expect(subject).to eq(-5)
@@ -92,7 +96,7 @@ defmodule D20.FifthEdition.CharacterSpec do
   end
 
   describe "wisdom_modifier/1" do
-    subject Character.wisdom_modifier(%{base_wisdom: 0})
+    subject Character.wisdom_modifier(%Character{})
 
     it "returns the ability modifier for the character's wisdom_modifier" do
       expect(subject).to eq(-5)
@@ -100,7 +104,7 @@ defmodule D20.FifthEdition.CharacterSpec do
   end
 
   describe "charisma_modifier/1" do
-    subject Character.charisma_modifier(%{base_charisma: 0})
+    subject Character.charisma_modifier(%Character{})
 
     it "returns the ability modifier for the character's charisma" do
       expect(subject).to eq(-5)

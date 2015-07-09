@@ -3,6 +3,8 @@ defmodule D20.FifthEdition.Character do
   alias D20.Character
 
   defstruct level: 1,
+    proficiencies: [],
+    class: nil,
     base_strength: 0,
     base_dexterity: 0,
     base_wisdom: 0,
