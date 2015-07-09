@@ -94,4 +94,162 @@ defmodule D20.FifthEdition.CharacterSpec do
       end
     end
   end
+
+  describe "skills" do
+    context "with no proficiency" do
+      describe "wisdom based skills" do
+        it "returns the wisdom_modifier" do
+          character = %{base_wisdom: 0, proficiencies: []}
+          wisdom = Character.wisdom_modifier(character)
+
+          expect(Character.survival(character)).to eq(wisdom)
+          expect(Character.animal_handling(character)).to eq(wisdom)
+          expect(Character.insight(character)).to eq(wisdom)
+          expect(Character.medicine(character)).to eq(wisdom)
+          expect(Character.perception(character)).to eq(wisdom)
+        end
+      end
+
+      describe "dexterity based skills" do
+        it "returns the dexterity_modifier" do
+          character = %{base_dexterity: 0, proficiencies: []}
+          dexterity = Character.dexterity_modifier(character)
+
+          expect(Character.acrobatics(character)).to eq(dexterity)
+          expect(Character.stealth(character)).to eq(dexterity)
+          expect(Character.sleight_of_hand(character)).to eq(dexterity)
+        end
+      end
+
+      describe "intelligence based skills" do
+        it "returns the intelligence_modifier" do
+          character = %{base_intelligence: 0, proficiencies: []}
+          intelligence = Character.intelligence_modifier(character)
+
+          expect(Character.arcana(character)).to eq(intelligence)
+          expect(Character.history(character)).to eq(intelligence)
+          expect(Character.investigation(character)).to eq(intelligence)
+          expect(Character.nature(character)).to eq(intelligence)
+          expect(Character.religion(character)).to eq(intelligence)
+        end
+      end
+
+      describe "charisma based skills" do
+        it "returns the charisma_modifier" do
+          character = %{base_charisma: 0, proficiencies: []}
+          charisma = Character.charisma_modifier(character)
+
+          expect(Character.deception(character)).to eq(charisma)
+          expect(Character.intimidation(character)).to eq(charisma)
+          expect(Character.performance(character)).to eq(charisma)
+          expect(Character.persuasion(character)).to eq(charisma)
+        end
+      end
+
+      describe "strength based skills" do
+      it "returns the strength modifier" do
+          character = %{base_strength: 0, proficiencies: []}
+          expect(Character.athletics(character)).to eq(Character.strength_modifier(character))
+        end
+      end
+    end
+
+    context "with proficiency" do
+      before do: {:ok, bonus: D20.Character.proficiency_bonus(%{level: 1}) }
+      let :bonus, do: __.bonus
+
+      describe "wisdom based skills" do
+        it "returns the wisdom_modifier plus the proficiency bonus" do
+          character = %{
+            level: 1,
+            base_wisdom: 0,
+            proficiencies: [
+              :survival,
+              :animal_handling,
+              :insight,
+              :medicine,
+              :perception
+            ]
+          }
+          wisdom = Character.wisdom_modifier(character)
+
+          expect(Character.survival(character)).to eq(wisdom + bonus)
+          expect(Character.animal_handling(character)).to eq(wisdom + bonus)
+          expect(Character.insight(character)).to eq(wisdom + bonus)
+          expect(Character.medicine(character)).to eq(wisdom + bonus)
+          expect(Character.perception(character)).to eq(wisdom + bonus)
+        end
+      end
+
+      describe "dexterity based skills" do
+        it "returns the dexterity_modifier plus the proficiency bonus" do
+          character = %{
+            level: 1,
+            base_dexterity: 0,
+            proficiencies: [:acrobatics, :stealth, :sleight_of_hand]
+          }
+          dexterity = Character.dexterity_modifier(character)
+
+          expect(Character.acrobatics(character)).to eq(dexterity + bonus)
+          expect(Character.stealth(character)).to eq(dexterity + bonus)
+          expect(Character.sleight_of_hand(character)).to eq(dexterity + bonus)
+        end
+      end
+
+      describe "intelligence based skills" do
+        it "returns the intelligence_modifier plus the proficiency bonus" do
+          character = %{
+            level: 1,
+            base_intelligence: 0,
+            proficiencies: [
+              :arcana,
+              :history,
+              :investigation,
+              :nature,
+              :religion
+            ]
+          }
+          intelligence = Character.intelligence_modifier(character)
+
+          expect(Character.arcana(character)).to eq(intelligence + bonus)
+          expect(Character.history(character)).to eq(intelligence + bonus)
+          expect(Character.investigation(character)).to eq(intelligence + bonus)
+          expect(Character.nature(character)).to eq(intelligence + bonus)
+          expect(Character.religion(character)).to eq(intelligence + bonus)
+        end
+      end
+
+      describe "charisma based skills" do
+        it "returns the charisma_modifier plus the proficiency bonus" do
+          character = %{
+            level: 1,
+            base_charisma: 0,
+            proficiencies: [
+              :deception,
+              :intimidation,
+              :performance,
+              :persuasion
+            ]
+          }
+          charisma = Character.charisma_modifier(character)
+
+          expect(Character.deception(character)).to eq(charisma + bonus)
+          expect(Character.intimidation(character)).to eq(charisma + bonus)
+          expect(Character.performance(character)).to eq(charisma + bonus)
+          expect(Character.persuasion(character)).to eq(charisma + bonus)
+        end
+      end
+
+      describe "strength based skills" do
+        it "returns the strength modifier plus the proficiency bonus" do
+          character = %{
+            level: 1,
+            base_strength: 0,
+            proficiencies: [:athletics]
+          }
+          expect(Character.athletics(character)).to eq(Character.strength_modifier(character) + bonus)
+        end
+      end
+    end
+  end
 end
