@@ -1,4 +1,6 @@
 defmodule D20.FifthEdition.Character do
+  import Enum
+
   def strength_modifier(character) do
     ability_modifier(character.base_strength)
   end
@@ -25,5 +27,9 @@ defmodule D20.FifthEdition.Character do
 
   def ability_modifier(ability) do
     ability - 10 |> div(2)
+  end
+
+  def proficient_in?(character, skill) do
+    any?(character.proficiencies, fn(proficiency) -> skill == proficiency end)
   end
 end
