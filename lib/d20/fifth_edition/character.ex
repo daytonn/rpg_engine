@@ -2,6 +2,14 @@ defmodule D20.FifthEdition.Character do
   import Enum
   alias D20.Character
 
+  defstruct level: 1,
+    base_strength: 0,
+    base_dexterity: 0,
+    base_wisdom: 0,
+    base_intelligence: 0,
+    base_constitution: 0,
+    base_charisma: 0
+
   def strength_modifier(character) do
     ability_modifier(character.base_strength)
   end

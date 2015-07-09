@@ -3,6 +3,36 @@ defmodule D20.FifthEdition.CharacterSpec do
   import Enum
   alias D20.FifthEdition.Character
 
+  subject %Character{}
+
+  it "has a level" do
+    expect(subject.level).to eq(1)
+  end
+
+  it "has a base_strength" do
+    expect(subject.base_strength).to eq(0)
+  end
+
+  it "has a base_dexterity" do
+    expect(subject.base_dexterity).to eq(0)
+  end
+
+  it "has a base_wisdom" do
+    expect(subject.base_wisdom).to eq(0)
+  end
+
+  it "has a base_intelligence" do
+    expect(subject.base_intelligence).to eq(0)
+  end
+
+  it "has a base_constitution" do
+    expect(subject.base_constitution).to eq(0)
+  end
+
+  it "has a base_charisma" do
+    expect(subject.base_charisma).to eq(0)
+  end
+
   describe "ability_modifier/1" do
     it "returns the number halved" do
       expect(Character.ability_modifier(0)).to eq(-5)
