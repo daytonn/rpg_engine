@@ -8,7 +8,5 @@ defmodule D20.Character do
     div(x, 4) + 2
   end
 
-  def proficiency_bonus(character) do
-    bonus_at_level(character.level)
-  end
+  def proficiency_bonus(character), do: bonus_at_level(character.level)
 end

@@ -1,16 +1,36 @@
 defmodule D20.FifthEdition.Class.Barbarian.Spec do
   use ESpec
+  alias D20.FifthEdition.Character
   alias D20.FifthEdition.Class.Barbarian
-  alias D20.Class
 
-  subject %Barbarian{}
+  before do: { :ok, character: %Character{level: 2} }
+  let :character, do: __.character
 
-  it "has hit_dice of 1d12" do
-    expect(Class.hit_dice(subject)).to eq(count: 1, sides: 12)
+  describe "hit_dice/1" do
+    it "returns a count of the character's level and 12 sides" do
+      expect(Barbarian.hit_dice(character)).to eq(count: character.level, sides: 12)
+    end
   end
 
-  it "has starting_money of 2d4 * 10" do
-    expect(Class.starting_money(subject)).to be :>, 19
-    expect(Class.starting_money(subject)).to be :<, 81
+  describe "starting_copper/0" do
+    it "is greater than 19" do
+      expect(Barbarian.starting_copper).to be :>, 1999
+    end
+
+    it "is less than 81" do
+      expect(Barbarian.starting_copper).to be :<, 8001
+    end
+  end
+
+  describe "cantrips/0" do
+    it "returns an empty list" do
+      expect(Barbarian.cantrips).to eq([])
+    end
+  end
+
+  describe "spells/0" do
+    it "returns an empty list" do
+      expect(Barbarian.spells).to eq([])
+    end
   end
 end

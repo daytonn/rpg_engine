@@ -1,4 +1,4 @@
-defmodule CharacterSpec do
+defmodule D20.Character.Spec do
   use ESpec
 
   describe "bonus_at_level/1" do

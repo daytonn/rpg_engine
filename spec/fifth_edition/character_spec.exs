@@ -1,4 +1,4 @@
-defmodule D20.FifthEdition.CharacterSpec do
+defmodule D20.FifthEdition.Character.Spec do
   use ESpec
   import Enum
   alias D20.FifthEdition.Character
@@ -38,7 +38,7 @@ defmodule D20.FifthEdition.CharacterSpec do
   end
 
   describe "ability_modifier/1" do
-    it "returns the number halved" do
+    it "returns the number divided by 2 minus 5" do
       expect(Character.ability_modifier(0)).to eq(-5)
       expect(Character.ability_modifier(1)).to eq(-4)
       expect(Character.ability_modifier(2)).to eq(-4)

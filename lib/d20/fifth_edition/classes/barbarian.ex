@@ -1,15 +1,17 @@
-alias D20.Class
-
 defmodule D20.FifthEdition.Class.Barbarian do
-  defstruct []
-end
-
-defimpl Class, for: D20.FifthEdition.Class.Barbarian do
+  import D20.Dice
+  import D20.Money
+  import Math
   import Enum
-  alias D20.Dice
 
-  def hit_dice(_), do: [count: 1, sides: 12]
-  def starting_money(_) do
-    sum(Dice.rolls(count: 2, sides: 4)) * 10
+  def cantrips, do: []
+  def spells, do: []
+  def hit_dice(%{level: level}), do: [count: level, sides: 12]
+
+  def starting_copper do
+    rolls(count: 2, sides: 4)
+      |> sum
+      |> multiply(10)
+      |> gp_to_cp
   end
 end

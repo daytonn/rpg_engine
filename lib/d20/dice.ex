@@ -10,21 +10,10 @@ defmodule D20.Dice do
     round(:random.uniform * limit) + 1
   end
 
-  def rolls(count, sides) do
-    rolls([], count, sides)
-  end
-
-  def rolls([count: count, sides: sides]) do
-    rolls([], count, sides)
-  end
-
-  def rolls(%{count: count, sides: sides}) do
-    rolls([], count, sides)
-  end
-
-  def rolls({count, sides}) do
-    rolls([], count, sides)
-  end
+  def rolls(count, sides), do: rolls([], count, sides)
+  def rolls([count: count, sides: sides]), do: rolls([], count, sides)
+  def rolls(%{count: count, sides: sides}), do: rolls([], count, sides)
+  def rolls({count, sides}), do: rolls([], count, sides)
 
   def rolls(previous_rolls, count, sides) do
     if Enum.count(previous_rolls) == count do
