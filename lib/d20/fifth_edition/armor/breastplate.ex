@@ -1,5 +1,6 @@
 defmodule D20.FifthEdition.Armor.Breastplate do
-  defstruct type: "Medium",
+  defstruct [
+    type: "Medium",
     name: "Breastplate",
     cost: 40000,
     armor_class: 14,
@@ -7,4 +8,5 @@ defmodule D20.FifthEdition.Armor.Breastplate do
     max_dex_modifier: 2,
     stealth: "-",
     weight: 20
+  ]
 end

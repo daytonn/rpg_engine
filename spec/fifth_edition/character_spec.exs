@@ -3,68 +3,51 @@ defmodule D20.FifthEdition.Character.Spec do
   import Enum
   alias D20.FifthEdition.Character
 
-  subject %Character{}
-
-  it "has a level" do
-    expect(subject.level).to eq(1)
+  before do
+    {
+      :ok,
+      character: %{
+        level: 1,
+        proficiencies: [],
+        base_strength: 0,
+        base_wisdom: 0,
+        base_intelligence: 0,
+        base_dexterity: 0,
+        base_charisma: 0,
+        base_constitution: 0
+      }
+    }
   end
+  let :character, do: __.character
 
-  it "has proficiencies" do
-    expect(subject.proficiencies).to eq([])
-  end
-
-  it "has a base_strength" do
-    expect(subject.base_strength).to eq(0)
-  end
-
-  it "has a base_dexterity" do
-    expect(subject.base_dexterity).to eq(0)
-  end
-
-  it "has a base_wisdom" do
-    expect(subject.base_wisdom).to eq(0)
-  end
-
-  it "has a base_intelligence" do
-    expect(subject.base_intelligence).to eq(0)
-  end
-
-  it "has a base_constitution" do
-    expect(subject.base_constitution).to eq(0)
-  end
-
-  it "has a base_charisma" do
-    expect(subject.base_charisma).to eq(0)
-  end
-
-  describe "ability_modifier/1" do
+  describe "ability_modifier/2" do
     it "returns the number divided by 2 minus 5" do
-      expect(Character.ability_modifier(0)).to eq(-5)
-      expect(Character.ability_modifier(1)).to eq(-4)
-      expect(Character.ability_modifier(2)).to eq(-4)
-      expect(Character.ability_modifier(3)).to eq(-3)
-      expect(Character.ability_modifier(4)).to eq(-3)
-      expect(Character.ability_modifier(5)).to eq(-2)
-      expect(Character.ability_modifier(6)).to eq(-2)
-      expect(Character.ability_modifier(7)).to eq(-1)
-      expect(Character.ability_modifier(8)).to eq(-1)
-      expect(Character.ability_modifier(9)).to eq(0)
-      expect(Character.ability_modifier(10)).to eq(0)
-      expect(Character.ability_modifier(11)).to eq(0)
-      expect(Character.ability_modifier(12)).to eq(1)
-      expect(Character.ability_modifier(13)).to eq(1)
-      expect(Character.ability_modifier(14)).to eq(2)
-      expect(Character.ability_modifier(15)).to eq(2)
-      expect(Character.ability_modifier(16)).to eq(3)
-      expect(Character.ability_modifier(17)).to eq(3)
-      expect(Character.ability_modifier(18)).to eq(4)
-      expect(Character.ability_modifier(19)).to eq(4)
-      expect(Character.ability_modifier(20)).to eq(5)
+      expect(Character.ability_modifier(%{base_strength: 0}, :strength)).to eq(-5)
+      expect(Character.ability_modifier(%{base_strength: 1}, :strength)).to eq(-4)
+      expect(Character.ability_modifier(%{base_strength: 2}, :strength)).to eq(-4)
+      expect(Character.ability_modifier(%{base_strength: 3}, :strength)).to eq(-3)
+      expect(Character.ability_modifier(%{base_strength: 4}, :strength)).to eq(-3)
+      expect(Character.ability_modifier(%{base_strength: 5}, :strength)).to eq(-2)
+      expect(Character.ability_modifier(%{base_strength: 6}, :strength)).to eq(-2)
+      expect(Character.ability_modifier(%{base_strength: 7}, :strength)).to eq(-1)
+      expect(Character.ability_modifier(%{base_strength: 8}, :strength)).to eq(-1)
+      expect(Character.ability_modifier(%{base_strength: 9}, :strength)).to eq(0)
+      expect(Character.ability_modifier(%{base_strength: 10}, :strength)).to eq(0)
+      expect(Character.ability_modifier(%{base_strength: 11}, :strength)).to eq(0)
+      expect(Character.ability_modifier(%{base_strength: 12}, :strength)).to eq(1)
+      expect(Character.ability_modifier(%{base_strength: 13}, :strength)).to eq(1)
+      expect(Character.ability_modifier(%{base_strength: 14}, :strength)).to eq(2)
+      expect(Character.ability_modifier(%{base_strength: 15}, :strength)).to eq(2)
+      expect(Character.ability_modifier(%{base_strength: 16}, :strength)).to eq(3)
+      expect(Character.ability_modifier(%{base_strength: 17}, :strength)).to eq(3)
+      expect(Character.ability_modifier(%{base_strength: 18}, :strength)).to eq(4)
+      expect(Character.ability_modifier(%{base_strength: 19}, :strength)).to eq(4)
+      expect(Character.ability_modifier(%{base_strength: 20}, :strength)).to eq(5)
     end
   end
 
   describe "strength_modifier/1" do
-    subject Character.strength_modifier(%Character{})
+    subject Character.strength_modifier(character)
 
     it "returns the ability modifier for the character's strength" do
       expect(subject).to eq(-5)
@@ -72,7 +55,7 @@ defmodule D20.FifthEdition.Character.Spec do
   end
 
   describe "dexterity_modifier/1" do
-    subject Character.dexterity_modifier(%Character{})
+    subject Character.dexterity_modifier(character)
 
     it "returns the ability modifier for the character's dexterity_modifier" do
       expect(subject).to eq(-5)
@@ -80,7 +63,7 @@ defmodule D20.FifthEdition.Character.Spec do
   end
 
   describe "constitution_modifier/1" do
-    subject Character.constitution_modifier(%Character{})
+    subject Character.constitution_modifier(character)
 
     it "returns the ability modifier for the character's constitution_modifier" do
       expect(subject).to eq(-5)
@@ -88,7 +71,7 @@ defmodule D20.FifthEdition.Character.Spec do
   end
 
   describe "intelligence_modifier/1" do
-    subject Character.intelligence_modifier(%Character{})
+    subject Character.intelligence_modifier(character)
 
     it "returns the ability modifier for the character's intelligence_modifier" do
       expect(subject).to eq(-5)
@@ -96,7 +79,7 @@ defmodule D20.FifthEdition.Character.Spec do
   end
 
   describe "wisdom_modifier/1" do
-    subject Character.wisdom_modifier(%Character{})
+    subject Character.wisdom_modifier(character)
 
     it "returns the ability modifier for the character's wisdom_modifier" do
       expect(subject).to eq(-5)
@@ -104,7 +87,7 @@ defmodule D20.FifthEdition.Character.Spec do
   end
 
   describe "charisma_modifier/1" do
-    subject Character.charisma_modifier(%Character{})
+    subject Character.charisma_modifier(character)
 
     it "returns the ability modifier for the character's charisma" do
       expect(subject).to eq(-5)
@@ -124,6 +107,7 @@ defmodule D20.FifthEdition.Character.Spec do
       it "returns true" do
         each(D20.FifthEdition.skills, fn(skill) ->
           expect(Character.proficient_in?(%{proficiencies: D20.FifthEdition.skills}, skill)).to eq(true)
+          expect(Character.proficient_in?(%{proficiencies: [:strength]}, :strength))
         end)
       end
     end
@@ -181,7 +165,7 @@ defmodule D20.FifthEdition.Character.Spec do
       end
 
       describe "strength based skills" do
-      it "returns the strength modifier" do
+        it "returns the strength modifier" do
           character = %{base_strength: 0, proficiencies: []}
           expect(Character.athletics(character)).to eq(Character.strength_modifier(character))
         end
@@ -283,6 +267,32 @@ defmodule D20.FifthEdition.Character.Spec do
           }
           expect(Character.athletics(character)).to eq(Character.strength_modifier(character) + bonus)
         end
+      end
+    end
+  end
+
+  describe "ability_save/1" do
+    context "without proficiency" do
+      it "returns the ability's modifier" do
+        expect(Character.ability_save(character, :strength)).to eq(Character.strength_modifier(character))
+        expect(Character.ability_save(character, :dexterity)).to eq(Character.dexterity_modifier(character))
+        expect(Character.ability_save(character, :wisdom)).to eq(Character.wisdom_modifier(character))
+        expect(Character.ability_save(character, :charisma)).to eq(Character.charisma_modifier(character))
+        expect(Character.ability_save(character, :intelligence)).to eq(Character.intelligence_modifier(character))
+        expect(Character.ability_save(character, :constitution)).to eq(Character.constitution_modifier(character))
+      end
+    end
+
+    context "with proficiency" do
+      subject %{character | proficiencies: [:strength, :dexterity, :wisdom, :charisma, :intelligence, :constitution]}
+
+      it "returns the ability modifier plus the proficiency bonus" do
+        expect(Character.ability_save(subject, :strength)).to eq(Character.strength_modifier(subject) + D20.Character.proficiency_bonus(%{level: 1}))
+        expect(Character.ability_save(subject, :dexterity)).to eq(Character.dexterity_modifier(subject) + D20.Character.proficiency_bonus(%{level: 1}))
+        expect(Character.ability_save(subject, :wisdom)).to eq(Character.wisdom_modifier(subject) + D20.Character.proficiency_bonus(%{level: 1}))
+        expect(Character.ability_save(subject, :charisma)).to eq(Character.charisma_modifier(subject) + D20.Character.proficiency_bonus(%{level: 1}))
+        expect(Character.ability_save(subject, :intelligence)).to eq(Character.intelligence_modifier(subject) + D20.Character.proficiency_bonus(%{level: 1}))
+        expect(Character.ability_save(subject, :constitution)).to eq(Character.constitution_modifier(subject) + D20.Character.proficiency_bonus(%{level: 1}))
       end
     end
   end

@@ -1,9 +1,8 @@
 defmodule D20.FifthEdition.Class.Druid.Spec do
   use ESpec
-  alias D20.FifthEdition.Character
   alias D20.FifthEdition.Class.Druid
 
-  before do: {:ok, character: %Character{level: 2}}
+  before do: {:ok, character: %{level: 2}}
   let :character, do: __.character
 
   describe "hit_dice/1" do

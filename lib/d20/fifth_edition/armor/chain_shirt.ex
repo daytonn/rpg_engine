@@ -1,5 +1,6 @@
 defmodule D20.FifthEdition.Armor.ChainShirt do
-  defstruct type: "Medium",
+  defstruct [
+    type: "Medium",
     name: "Chain shirt",
     cost: 5000,
     armor_class: 13,
@@ -7,4 +8,5 @@ defmodule D20.FifthEdition.Armor.ChainShirt do
     max_dex_modifier: 2,
     stealth: "-",
     weight: 20
+  ]
 end

@@ -1,5 +1,6 @@
 defmodule D20.FifthEdition.Armor.ScaleMail do
-  defstruct type: "Medium",
+  defstruct [
+    type: "Medium",
     name: "Scale mail",
     cost: 5000,
     armor_class: 14,
@@ -7,4 +8,5 @@ defmodule D20.FifthEdition.Armor.ScaleMail do
     max_dex_modifier: 2,
     stealth: "Disadvantage",
     weight: 45
+  ]
 end
