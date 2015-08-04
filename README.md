@@ -1,4 +1,4 @@
-D20
-===
+RPG Engine
+==========
 
-** TODO: Add description **
+An engine for multiple tabletop RPGs, written in elixir.
